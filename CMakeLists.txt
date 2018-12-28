@@ -5,7 +5,7 @@
 ###
 cmake_minimum_required(VERSION 3.1)
 
-### set avr tools
+### set avr tools. the avr compiler and tools must be in your path ###
 find_program(CMAKE_C_COMPILER avr-gcc)
 find_program(CMAKE_CXX_COMPILER avr-g++)
 find_program(AVR_OBJCOPY avr-objcopy)
@@ -22,6 +22,7 @@ set(CMAKE_C_FLAGS "-Os -g")
 set(CMAKE_CXX_FLAGS "-Os -g")
 
 ### parameters for the arduino uno board needed by the avr library ###
+### change them if you are using a different chip ###
 set(AVR_MCU atmega328p)
 set(MCU_SPEED "16000000")
 add_definitions(-DBAUD=9600)
@@ -30,6 +31,7 @@ add_definitions(-DARDUINO=10807)
 add_definitions(-DARDUINO_ARCH_AVR)
 
 ### properties for uploading ###
+### make sure these match what you need for your project ###
 set(AVR_UPLOAD_TOOL avrdude)
 set(AVR_PROGRAMMER arduino)
 set(AVR_UPLOAD_PORT COM7)
@@ -39,7 +41,12 @@ project(arduino)
 include_directories(/avr/include/)
 
 ### set properties of the main target ###
-add_executable(main main.cpp)
+set(MAIN_SOURCE
+    main.cpp
+    src/Utility/Serial/Serial.cpp)
+
+add_executable(main ${MAIN_SOURCE})
+
 set_target_properties(main PROPERTIES OUTPUT_NAME main.elf)
 set_property(TARGET main APPEND PROPERTY COMPILE_OPTIONS -mmcu=${AVR_MCU} -DF_CPU=${MCU_SPEED}UL)
 set_property(TARGET main APPEND PROPERTY LINK_LIBRARIES -Wl,--gc-sections -mrelax -mmcu=${AVR_MCU})
