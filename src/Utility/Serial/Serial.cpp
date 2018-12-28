@@ -53,7 +53,29 @@ void Serial::print(char *c) {
 
 int Serial::read(char *c, size_t length) {
     int n = 0;    
-    while( (c[n] = getChar()) != '\n' && ++n < length - 1) {}
+    while((c[n] = getChar()) != '\n' && ++n < length - 1) {}
     c[n] = '\0';
     return n;
+}
+
+void Serial::print(int n, uint8_t base) {
+    int sign;
+    if(n < 0) {
+        sign = -1;
+        n *= -1;
+    }
+    char buf[12];
+    char *str = &buf[sizeof(buf) -1];
+    *str = '\0';
+    if(base < 2) base = 10;
+    do {
+        *--str = n % base + '0';
+        n /= base;
+    } while(n);
+    
+    if(sign < 0) {
+        *--str = '-';
+    }
+    
+    print(str);
 }

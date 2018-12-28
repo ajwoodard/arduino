@@ -60,6 +60,13 @@ public:
     static void print(char *c);
     
     /**
+     * prints integers
+     * @param n : the integer to print
+     * @param base : the base to represent the integer
+     */
+    static void print(int n, uint8_t base = 10);
+    
+    /**
      * reads a string of characters. it either reads until it hits a newline \n
      * character or reads until the char array is filled -- whichever comes first.
      * 
