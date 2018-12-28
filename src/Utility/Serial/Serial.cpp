@@ -53,7 +53,7 @@ void Serial::print(char *c) {
 
 int Serial::read(char *c, size_t length) {
     int n = 0;    
-    while( (c[n] = getChar()) != '\n' && ++n < length) {}
+    while( (c[n] = getChar()) != '\n' && ++n < length - 1) {}
     c[n] = '\0';
     return n;
 }
