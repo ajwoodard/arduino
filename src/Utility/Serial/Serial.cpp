@@ -43,3 +43,17 @@ char Serial::getChar() {
     loop_until_bit_is_set(UCSR0A, RXC0);
     return UDR0;
 }
+
+void Serial::print(char *c) {
+    int length = strlen(c);
+    while(length--) {
+        putChar(*c++);
+    }
+}
+
+int Serial::read(char *c, size_t length) {
+    int n = 0;    
+    while( (c[n] = getChar()) != '\n' && ++n < length) {}
+    c[n] = '\0';
+    return n;
+}

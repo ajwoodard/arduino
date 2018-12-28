@@ -19,7 +19,9 @@
 #endif
 
 #include <util/setbaud.h>
+#include <stdio.h>
 #include <avr/io.h>
+#include <string.h>
 /**
  * @class Serial Serial.hpp "src/Utility/Serial/Serial.hpp"
  * 
@@ -50,6 +52,22 @@ public:
      * @return c : the character received
      */
     static char getChar();
+    
+    /**
+     * writes an entire string of characters to serial out
+     * @param c : char array
+     */
+    static void print(char *c);
+    
+    /**
+     * reads a string of characters. it either reads until it hits a newline \n
+     * character or reads until the char array is filled -- whichever comes first.
+     * 
+     * Output will tell you how many characters were read.
+     * @param c : char array to write to
+     * @return length : the number of character read
+     */
+    static int read(char *c, size_t length);
 };
 
 #endif /* SERIAL_HPP */

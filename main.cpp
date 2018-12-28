@@ -14,9 +14,12 @@ int main() {
 
     DDRB = 1 << PB5;
     Serial::init();
+    char c[8];
     while(1) {
-        char c = Serial::getChar();
-        Serial::putChar(c);
+        int n = Serial::read(c, sizeof(c)/(sizeof(*c)));
+        Serial::print(c);
+        Serial::putChar('\n');
+        Serial::putChar(n+'0');
         _delay_ms(1000);
     }
     return 0;
