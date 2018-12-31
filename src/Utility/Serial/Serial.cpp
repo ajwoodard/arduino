@@ -52,7 +52,7 @@ void Serial::print(char *c) {
 }
 
 int Serial::read(char *c, size_t length) {
-    int n = 0;    
+    uint8_t n = 0;    
     while((c[n] = getChar()) != '\n' && ++n < length - 1) {}
     c[n] = '\0';
     return n;
@@ -76,6 +76,5 @@ void Serial::print(int n, uint8_t base) {
     if(sign < 0) {
         *--str = '-';
     }
-    
     print(str);
 }

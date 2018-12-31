@@ -13,7 +13,7 @@
 
 #ifndef TLV0832_HPP
 #define TLV0832_HPP
-#include <Arduino.h>
+#include <avr/io.h>
 #include <stdint.h>
 /**
  * @class TLV0832 TLV0832.hpp "src/TLV0832/TLV0832.hpp"
@@ -26,6 +26,7 @@
  * probably figure out how to make it work.
  * 
  * @see <http://www.ti.com/lit/ds/slas148/slas148.pdf>
+ * 
  */
 class TLV0832 {
 public:
@@ -35,10 +36,10 @@ public:
     
     /**
      * read data from the TLV0832 pin
-     * @param dataPin : The pin on the Arduinio that will receive the data (connected to pin 6 on the TLV0832)
-     * @param clockPin : The pin on the Arduino to be pulsed HIGH/LOW (connected to pin 7 on the TLV0832)
-     * @param clearPin : The pin on the Arduino to be set LOW to initialize conversion (connected to pin 1 on the TLV0832)
-     * @param configPin : The pin on the Arduino that will configure the TLV0832 input modes (connected to pin 5 on the TLV0832)
+     * @param dataPin : The pin on the MCU that will receive the data (connected to pin 6 on the TLV0832)
+     * @param clockPin : The pin on the MCU to be pulsed HIGH/LOW (connected to pin 7 on the TLV0832)
+     * @param clearPin : The pin on the MCU to be set LOW to initialize conversion (connected to pin 1 on the TLV0832)
+     * @param configPin : The pin on the MCU that will configure the TLV0832 input modes (connected to pin 5 on the TLV0832)
      * @param channel : The channel or mode to read from (see initRead below)
      * @return byte : the converted analog signal
      */
@@ -48,7 +49,7 @@ private:
     /**
      * initialize the TLV0832 to read either from CH0 or CH1 or some differential of the two channels.
      * 
-     * The channel parameter can have the folowing values.
+     * The channel parameter can have the following values.
      * 
      * - 0 = read from CH0
      * - 1 = read from CH1
@@ -60,7 +61,8 @@ private:
      * @param configPin : same as above
      * @param channel: 0, 1, 2, 3.
      */
-    static void initRead(int clockPin, int clearPin, int configPin, int channel);
+    static void initRead(
+        uint8_t clockPort, uint8_t clockPin, int clearPin, int configPin, int channel);
 
 };
 

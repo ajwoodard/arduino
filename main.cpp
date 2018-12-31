@@ -2,23 +2,22 @@
 #include <util/delay.h>
 #include <util/setbaud.h>
 #include "src/Utility/Serial/Serial.hpp"
+#include "src/Utility/Pin/Pin.hpp"
 
 void blink() {
-    PORTB = 1 << PB5;
+    Pin::set(B5, HIGH);
     _delay_ms(1000);
-    PORTB = 0;
+    Pin::set(B5, LOW);
     _delay_ms(1000);
 }
 
 int main() {
 
-    DDRB = 1 << PB5;
-    Serial::init();
+    Pin::setMode(B5, OUTPUT);
     while(1) {
-        Serial::print(-500);
-        Serial::putChar('\n');
-        _delay_ms(1000);
+        blink();
     }
+    
     return 0;
 }
 

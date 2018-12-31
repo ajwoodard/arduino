@@ -43,7 +43,8 @@ include_directories(/avr/include/)
 ### set properties of the main target ###
 set(MAIN_SOURCE
     main.cpp
-    src/Utility/Serial/Serial.cpp)
+    src/Utility/Serial/Serial.cpp
+    src/Utility/Pin/Pin.cpp)
 
 add_executable(main ${MAIN_SOURCE})
 
