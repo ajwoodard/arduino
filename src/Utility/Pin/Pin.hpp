@@ -11,8 +11,8 @@
  * Created on December 30, 2018, 2:37 PM
  */
 
-#ifndef PINS_HPP
-#define PINS_HPP
+#ifndef PIN_HPP
+#define PIN_HPP
 
 #include <avr/io.h>
 /**
@@ -87,5 +87,5 @@ private:
 #error Undefiend MCU
 #endif
 
-#endif /* PINS_HPP */
+#endif /* PIN_HPP */
 

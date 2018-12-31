@@ -44,6 +44,7 @@ include_directories(/avr/include/)
 set(MAIN_SOURCE
     main.cpp
     src/Utility/Serial/Serial.cpp
+    src/TLV0832/TLV0832.cpp
     src/Utility/Pin/Pin.cpp)
 
 add_executable(main ${MAIN_SOURCE})
@@ -65,6 +66,7 @@ add_custom_command(
     WORKING_DIRECTORY .
 )
 
+add_subdirectory(./src)
 ### upload main to the board using `make upload_main` ###
 #add_custom_target(
 #    upload_main

@@ -59,7 +59,7 @@ int Serial::read(char *c, size_t length) {
 }
 
 void Serial::print(int n, uint8_t base) {
-    int sign;
+    int sign = 1;
     if(n < 0) {
         sign = -1;
         n *= -1;

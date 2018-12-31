@@ -15,6 +15,8 @@
 #define TLV0832_HPP
 #include <avr/io.h>
 #include <stdint.h>
+#include "../Utility/Pin/Pin.hpp"
+
 /**
  * @class TLV0832 TLV0832.hpp "src/TLV0832/TLV0832.hpp"
  * 
@@ -43,7 +45,7 @@ public:
      * @param channel : The channel or mode to read from (see initRead below)
      * @return byte : the converted analog signal
      */
-    static uint8_t read(int dataPin, int clockPin, int clearPin, int configPin, int channel);
+    static uint8_t read(uint8_t dataPin, uint8_t clockPin, uint8_t clearPin, uint8_t configPin, uint8_t channel);
     
 private:
     /**
@@ -61,8 +63,7 @@ private:
      * @param configPin : same as above
      * @param channel: 0, 1, 2, 3.
      */
-    static void initRead(
-        uint8_t clockPort, uint8_t clockPin, int clearPin, int configPin, int channel);
+    static void initRead(uint8_t clockPin, uint8_t clearPin, uint8_t configPin, uint8_t channel);
 
 };
 
