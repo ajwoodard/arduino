@@ -45,7 +45,8 @@ set(MAIN_SOURCE
     main.cpp
     src/Utility/Serial/Serial.cpp
     src/TLV0832/TLV0832.cpp
-    src/Utility/Pin/Pin.cpp)
+    src/Utility/Pin/Pin.cpp
+    src/Utility/Analog/Analog.cpp)
 
 add_executable(main ${MAIN_SOURCE})
 

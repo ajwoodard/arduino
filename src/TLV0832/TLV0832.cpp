@@ -63,7 +63,7 @@ void TLV0832::initRead(uint8_t clockPin, uint8_t clearPin, uint8_t configPin, ui
 }
 
 uint8_t TLV0832::read(uint8_t dataPin, uint8_t clockPin, uint8_t clearPin, uint8_t configPin, uint8_t channel) {
-    Pin::setMode(dataPin, OUTPUT);
+    Pin::setMode(dataPin, INPUT);
     initRead(clockPin, clearPin, configPin, channel);
     uint8_t data = 0; // collector for data
     for(int i = 7; i >= 0; i--) { //data comes off as MSB first so count backwards

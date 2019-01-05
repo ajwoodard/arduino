@@ -64,7 +64,7 @@ void Serial::print(int n, uint8_t base) {
         sign = -1;
         n *= -1;
     }
-    char buf[12];
+    char buf[50];
     char *str = &buf[sizeof(buf) -1];
     *str = '\0';
     if(base < 2) base = 10;
