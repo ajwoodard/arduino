@@ -34,25 +34,22 @@ add_definitions(-DARDUINO_ARCH_AVR)
 ### make sure these match what you need for your project ###
 set(AVR_UPLOAD_TOOL avrdude)
 set(AVR_PROGRAMMER arduino)
-set(AVR_UPLOAD_PORT COM7)
+set(AVR_UPLOAD_PORT COM6)
 
 ### set the project and the include directory ###
 project(arduino)
 include_directories(/avr/include/)
 
 ### set properties of the main target ###
-set(MAIN_SOURCE
-    main.cpp
-    src/Utility/Serial/Serial.cpp
-    src/TLV0832/TLV0832.cpp
-    src/Utility/Pin/Pin.cpp
-    src/Utility/Analog/Analog.cpp)
+set(MAIN_SOURCE main.cpp)
 
 add_executable(main ${MAIN_SOURCE})
 
 set_target_properties(main PROPERTIES OUTPUT_NAME main.elf)
 set_property(TARGET main APPEND PROPERTY COMPILE_OPTIONS -mmcu=${AVR_MCU} -DF_CPU=${MCU_SPEED}UL)
 set_property(TARGET main APPEND PROPERTY LINK_LIBRARIES -Wl,--gc-sections -mrelax -mmcu=${AVR_MCU})
+
+target_link_libraries(main Utility)
 
 ### convert the .elf file to hex ###
 add_custom_command(
