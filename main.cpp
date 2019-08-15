@@ -30,7 +30,7 @@ int main() {
     Pin::setMode(shiftClock, OUTPUT);
     Pin::setMode(reset, OUTPUT);
     
-    MC74HC595A mc = MC74HC595A(serialIn, latchClock, shiftClock, reset, outputEnable);
+    MC74HC595A mc = MC74HC595A(serialIn, latchClock, shiftClock);
     uint8_t i = 0;
     while(1) {
         mc.shiftOut(bits[i++]);

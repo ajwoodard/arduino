@@ -31,20 +31,14 @@
 
 #include "MC74HC595A.hpp"
 
-MC74HC595A::MC74HC595A(uint8_t serialIn, uint8_t latchClock, uint8_t shiftClock, uint8_t reset, uint8_t outputEnable) {
+MC74HC595A::MC74HC595A(uint8_t serialIn, uint8_t latchClock, uint8_t shiftClock) {
     this->serialIn = serialIn;
     this->latchClock = latchClock;
     this->shiftClock = shiftClock;
-    this->reset = reset;
-    this->outputEnable = outputEnable;
 }
 
 void MC74HC595A::shiftOut(uint8_t data) {
-    // clear any data on the shift register (just in case)
-    Pin::set(reset, LOW);
-    Pin::set(reset, HIGH);
     Pin::set(latchClock, LOW);
-    Pin::set(outputEnable, LOW);
     
     for(uint8_t i = 0; i < 8; i++) {
         // data is shifted out when there is a low to high switch on the shift clock

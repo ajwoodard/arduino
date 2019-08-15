@@ -37,7 +37,6 @@
  * @class MC74HC595A
  * This class represents the MC74HC595A serial to serial or parallel shift register
  * @param serialIn - Specifies which pin on the controller is connected to pin A (pin 14) on the MC74HC595A.
- * @param outputEnable - Specifies which pin on the controller is connected to OUTPUT ENABLE (pin 13) on the MC74HC595A
  * @param latchClock - Specifies which pin on the controller is connected to LATCH CLOCK (pin 12) on the MC74HC595A
  * @param shiftClock - Specifies which pin on the controller is connected to SHIFT CLOCK (pin 11) on the MC74HC595A
  * @param reset - Specifies which pin on the controller is connected to RESET (pin 10) on the MC74HC595A
@@ -46,7 +45,7 @@
  */
 class MC74HC595A {
 public:
-    MC74HC595A(uint8_t serialIn, uint8_t latchClock, uint8_t shiftClock, uint8_t reset, uint8_t outputEnable);
+    MC74HC595A(uint8_t serialIn, uint8_t latchClock, uint8_t shiftClock);
     virtual ~MC74HC595A() = default;
     void shiftOut(uint8_t data);
     void * operator new(size_t n) {
@@ -60,8 +59,6 @@ private:
     uint8_t serialIn;
     uint8_t latchClock;
     uint8_t shiftClock;
-    uint8_t reset;
-    uint8_t outputEnable;
 };
 
 #endif /* MC74HC595A_HPP */
